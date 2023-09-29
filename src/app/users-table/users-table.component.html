@@ -1,0 +1,33 @@
+<table class="w-full text-center">
+  <thead class="bg-black text-white">
+    <tr>
+      <th class="p-2">No.</th>
+      <th class="p-2">Name</th>
+      <th class="p-2">Email</th>
+      <th class="p-2">Message</th>
+      <th class="p-2">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="users.length > 0">
+    <tr *ngFor="let user of users; let i = index" class="even:bg-gray-100">
+      <td class="p-2">{{ i + 1 }}</td>
+      <td class="p-2">{{ user.name }}</td>
+      <td class="p-2">{{ user.email }}</td>
+      <td class="p-2">{{ user.message }}</td>
+      <td class="p-2">
+        <button
+          (click)="onDelete(i)"
+          class="rounded-lg p-1 px-3 text-sm text-red-500 hover:underline"
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <!-- display this if no users data yet -->
+  <tbody *ngIf="users.length < 1">
+    <tr>
+      <td colspan="5" class="p-2 py-10">No user data yet.</td>
+    </tr>
+  </tbody>
+</table>

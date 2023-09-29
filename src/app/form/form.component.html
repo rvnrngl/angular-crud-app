@@ -1,0 +1,79 @@
+<!-- Form Component -->
+<div
+  class="relative mb-6 flex w-full max-w-xs flex-col items-center justify-center gap-3 rounded-md bg-white shadow-lg"
+>
+  <div
+    class="flex w-full items-center justify-center rounded-tl-lg rounded-tr-lg bg-black px-6 py-3 text-white"
+  >
+    <h2 class="text-xl font-semibold uppercase">Send Message</h2>
+  </div>
+
+  <form class="flex w-full flex-col items-center justify-start gap-3 px-6 pb-6">
+    <div class="flex w-full items-center gap-2">
+      <input
+        [(ngModel)]="inputName"
+        name="name"
+        type="text"
+        id="name"
+        placeholder="Your name"
+        class="w-full border-b border-gray-400 bg-inherit outline-none"
+        required
+      />
+    </div>
+    <div class="flex w-full items-center gap-2">
+      <input
+        [(ngModel)]="inputEmail"
+        name="message"
+        type="email"
+        id="email"
+        placeholder="Your email"
+        class="w-full border-b border-gray-400 bg-inherit outline-none"
+        required
+      />
+    </div>
+    <div class="flex w-full items-start gap-2">
+      <textarea
+        [(ngModel)]="inputMessage"
+        name="message"
+        id="message"
+        rows="4"
+        placeholder="Your message..."
+        required
+        class="w-full border-b border-gray-400 bg-inherit outline-none"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      (click)="onSubmit()"
+      class="mt-3 rounded-md bg-black px-3 py-1 text-white"
+    >
+      Submit
+    </button>
+  </form>
+
+  <!-- display error message if user input is no valid -->
+  <div class="absolute -bottom-[15px] w-[80%] overflow-hidden rounded-full">
+    <div
+      *ngIf="errorMessage !== null || successMessage !== null"
+      class="relative w-full px-3 py-2 text-center text-xs"
+      [ngClass]="{
+        'bg-red-100 text-red-500': errorMessage !== null,
+        'bg-green-100 text-green-500': successMessage !== null
+      }"
+    >
+      {{ errorMessage !== null ? errorMessage : successMessage }}
+      <button
+        (click)="onMessageClose()"
+        class="absolute right-1 top-[37%] flex h-6 w-6 -translate-y-[37%] transform items-center justify-center text-base font-semibold"
+      >
+        x
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-users-table
+  [users]="users"
+  class="w-full max-w-xl overflow-hidden rounded-lg shadow-lg lg:max-w-none"
+>
+</app-users-table>
