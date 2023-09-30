@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
 import { UsersTableComponent } from './users-table/users-table.component';
+import { MenuComponent } from './menu/menu.component';
+import { BrowseComponent } from './browse/browse.component';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, UsersTableComponent],
+  declarations: [AppComponent, FormComponent, UsersTableComponent, MenuComponent, BrowseComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

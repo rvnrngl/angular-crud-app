@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RestApiService } from '../services/rest-api.service';
 import { ValidateService } from '../services/validate.service';
+import { Router } from '@angular/router';
 
 export type userProps = {
   name: string;
