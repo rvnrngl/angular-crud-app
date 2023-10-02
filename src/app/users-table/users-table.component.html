@@ -1,19 +1,23 @@
-<table class="w-full text-center">
+<table class="w-full text-center shadow-lg">
   <thead class="bg-black text-white">
     <tr>
       <th class="p-2">No.</th>
       <th class="p-2">Name</th>
       <th class="p-2">Email</th>
-      <th class="p-2">Message</th>
+      <th class="p-2">adress</th>
       <th class="p-2">Action</th>
     </tr>
   </thead>
   <tbody *ngIf="users.length > 0">
     <tr *ngFor="let user of users; let i = index" class="even:bg-gray-100">
       <td class="p-2">{{ i + 1 }}</td>
-      <td class="p-2">{{ user.name }}</td>
+      <td class="p-2">
+        {{ user.name?.firstname + " " + user.name?.lastname }}
+      </td>
       <td class="p-2">{{ user.email }}</td>
-      <td class="p-2">{{ user.message }}</td>
+      <td class="p-2">
+        {{ user.address?.street + ", " + user.address?.city }}
+      </td>
       <td class="p-2">
         <button
           (click)="onDelete(i)"

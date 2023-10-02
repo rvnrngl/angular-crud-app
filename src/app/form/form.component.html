@@ -1,9 +1,9 @@
 <!-- Form Component -->
 <div
-  class="flex min-h-screen w-screen flex-col items-center justify-start gap-5 p-6 lg:flex-row-reverse lg:justify-center lg:px-24"
+  class="relative flex min-h-screen w-screen items-center justify-center gap-5 overflow-hidden p-6"
 >
   <div
-    class="relative mb-6 flex w-full max-w-xs flex-col items-center justify-center gap-3 rounded-md bg-white shadow-lg"
+    class="mb-6 flex w-full max-w-md flex-col items-center justify-center gap-3 rounded-md bg-white shadow-lg"
   >
     <div
       class="flex w-full items-center justify-center rounded-tl-lg rounded-tr-lg bg-black px-6 py-3 text-white"
@@ -21,7 +21,7 @@
           type="text"
           id="name"
           placeholder="Your name"
-          class="w-full border-b border-gray-400 bg-inherit outline-none"
+          class="w-full border-b border-gray-300 bg-inherit outline-none lg:border-gray-400"
           required
         />
       </div>
@@ -32,7 +32,7 @@
           type="email"
           id="email"
           placeholder="Your email"
-          class="w-full border-b border-gray-400 bg-inherit outline-none"
+          class="w-full border-b border-gray-300 bg-inherit outline-none lg:border-gray-400"
           required
         />
       </div>
@@ -44,7 +44,7 @@
           rows="4"
           placeholder="Your message..."
           required
-          class="w-full border-b border-gray-400 bg-inherit outline-none"
+          class="w-full border-b border-gray-300 bg-inherit outline-none lg:border-gray-400"
         ></textarea>
       </div>
       <button
@@ -55,31 +55,28 @@
         Submit
       </button>
     </form>
-
-    <!-- display error message if user input is no valid -->
-    <div class="absolute -bottom-[15px] w-[80%] overflow-hidden rounded-full">
-      <div
-        *ngIf="errorMessage !== null || successMessage !== null"
-        class="relative w-full px-3 py-2 text-center text-xs"
-        [ngClass]="{
-          'bg-red-100 text-red-500': errorMessage !== null,
-          'bg-green-100 text-green-500': successMessage !== null
-        }"
+  </div>
+  <!-- display message -->
+  <div
+    *ngIf="errorMessage !== null || successMessage !== null"
+    [@bounceInUpOnEnter]
+    [@bounceOutDownOnLeave]
+    class="absolute bottom-10 w-full max-w-md rounded-lg px-6"
+  >
+    <div
+      class="relative w-full p-3 text-center text-xs"
+      [ngClass]="{
+        'bg-red-100 text-red-500': errorMessage !== null,
+        'bg-green-100 text-green-500': successMessage !== null
+      }"
+    >
+      {{ errorMessage !== null ? errorMessage : successMessage }}
+      <button
+        (click)="onMessageClose()"
+        class="absolute right-1 top-[37%] flex h-6 w-6 -translate-y-[37%] transform items-center justify-center text-base font-semibold"
       >
-        {{ errorMessage !== null ? errorMessage : successMessage }}
-        <button
-          (click)="onMessageClose()"
-          class="absolute right-1 top-[37%] flex h-6 w-6 -translate-y-[37%] transform items-center justify-center text-base font-semibold"
-        >
-          x
-        </button>
-      </div>
+        x
+      </button>
     </div>
   </div>
-
-  <app-users-table
-    [users]="users"
-    class="w-full max-w-xl overflow-hidden rounded-lg shadow-lg lg:max-w-none"
-  >
-  </app-users-table>
 </div>
